@@ -1,0 +1,14 @@
+.header{
+    background-color: #3a3a3b;
+}
+.botonNavbar{
+    height: 100px;
+    text-align: center;
+    padding: 40px 25px;
+    background-color: #3a3a3b;
+    border: 1px solid #3d3d3d;
+    border-radius: 5%;
+}
+.botonNavbar:hover{
+    background-color: #2d2d2e;
+}

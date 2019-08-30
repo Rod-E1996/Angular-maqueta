@@ -1,0 +1,137 @@
+.footer-copyright{
+    background-color: #1e1e20;
+    color: white;
+}
+.page-footer{
+    background-color: #3a3a3b;
+    color: white;
+}
+.subrayado{
+    border: 1px solid green;
+}
+.linkFooter{
+    text-decoration: none;
+    color: white;
+}
+.linkFooter:hover{
+	color: orange;
+}
+
+
+
+
+
+/**************************************Especificos de logos redes sociales*************************************************/
+/* Wrapper */
+.icon-button {
+	background-color: white;
+	border-radius: 3.6rem;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 2.0rem;
+	height: 3.6rem;
+	line-height: 3.6rem;
+	margin: 0 5px;
+	position: relative;
+	text-align: center;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+    width: 3.6rem;
+    text-decoration: none;
+}
+
+/* Circle */
+.icon-button span {
+	border-radius: 0;
+	display: block;
+	height: 0;
+	left: 50%;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-webkit-transition: all 0.3s;
+	   -moz-transition: all 0.3s;
+	     -o-transition: all 0.3s;
+	        transition: all 0.3s;
+	width: 0;
+}
+.icon-button:hover span {
+	width: 3.6rem;
+	height: 3.6rem;
+	border-radius: 3.6rem;
+	margin: -1.8rem;
+}
+.twitter-a span {
+	background-color: #4099ff;
+}
+.facebook-a span {
+	background-color: #3B5998;
+}
+.google-plus-a span {
+	background-color: #d1443a;
+}
+.instag-a span {
+	background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+.linkedin-a span {
+	background-color: #15aabf;
+}
+
+/* Icons */
+.icon-button .logo {
+	background: none;
+	color: white;
+	left: 0;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	   -moz-transition: all 0.3s;
+	     -o-transition: all 0.3s;
+	        transition: all 0.3s;
+	width: 3.6rem;
+	z-index: 10;
+}
+.icon-button .twit {
+	color: #4099ff;
+}
+.icon-button .face {
+	color: #3B5998;
+}
+.icon-button .google {
+	color: #d1443a;
+}
+.icon-button .insta {
+	color: #833ab4;
+}
+.icon-button .linked {
+	color: #15aabf;
+}
+.degradado:hover{
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+
+.icon-button:hover .logo{
+	color: white;
+}
+/************************************************************************************************************************/
+
+
+/***********************************************Boton ir arriba**********************************************************/
+.ir-arriba {
+    width: 3.6rem;
+	height: 3.6rem;
+	border-radius: 3.6rem;
+	padding: 20px;
+	background:rgb(197, 129, 3);
+	font-size:20px;
+	color:#fff;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+    right:20px;
+    text-align: center;
+}

@@ -1,0 +1,84 @@
+<!-- finalmente creamos la vista del crud, y la enrutamos para que automaticamente nos la llame en el app.html -->
+<div class="container">
+    <div class="row">
+        <hr>
+        <div class="col-sm-12 col-md-8 mt-5">
+            <table class="table table-bordered table-sm" *ngIf="hayRegistros(); else sin"> <!--ngIf nos sirve aqui para desplegar los datos (o no) en caso de que existan en nuestra base de datos-->
+                <thead class="thead-dark">
+                    <tr style="text-align: center;">
+                        <th scope="col">ID</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">TELEFONO</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">BORRAR</th>
+                        <th scope="col">SELECCIONAR</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let usuario of usuarios">
+                    <td>{{usuario.idUsuario}}</td>
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.telefono}}</td>
+                    <td class="text-break">{{usuario.email}}</td>
+                    <td style="text-align: center;"><button class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left" (confirm)="bajaUsuario(usuario.idUsuario)" (cancel)="cancelClicked = true"><i class="fas fa-trash"></i></button></td>  <!--de class en adelante son propiedades de angular popover alerts-->
+                    <td style="text-align: center;"><button class="btn btn-primary" (click)="seleccionarUsuario(usuario.idUsuario)"><i class="fas fa-user-edit"></i></button></td>
+                </tr>
+            </table>
+            <ng-template #sin>  <!--Template que se ejecuta cuando no hay datos en la base, he ahi el uso de ngIf anteriormente-->
+                <p>No hay Usuarios registrados</p>
+            </ng-template>
+        </div>
+
+        <div class="col-sm-12 col-md-4 mt-5">
+            <!-- <div>
+                <p>Nombre: <input type="text" class="form-control" [(ngModel)]="usuario.nombre"></p>
+                <p>Telefono: <input type="number" class="form-control" [(ngModel)]="usuario.telefono" /></p>
+                <p>Email: <input type="text" class="form-control" [(ngModel)]="usuario.email" /></p>
+                <p>
+                <button (click)="altaUsuario()">Agregar</button>
+                <button (click)="editarUsuario()">Modificar</button>
+                </p>
+            </div> -->
+
+            <!-- ********** -->
+            <hr>
+            <form [formGroup]="form">  <!--Es necesario colocar [formGroup] para poder utilizar los forms en Angular, pero antes debemos importarlos en el component.ts del modulo -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                    </div>
+                    <input type="text" formControlName="nombre" [(ngModel)]="usuario.nombre" class="form-control" aria-describedby="basic-addon1"> <!--se podria utilizar [(ngModel)]="usuario.nombre" para llenar el campo con el valor que proviene de la base de datos pero ya estamos utilizando FormControlName, asi que se removieron en los 3 inputs-->
+                </div>
+    
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2">Teléfono</span>
+                    </div>
+                    <input type="text" formControlName="telefono" [(ngModel)]="usuario.telefono" class="form-control" aria-describedby="basic-addon2">
+                </div>
+    
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">E-mail</span>
+                    </div>
+                    <input type="text" formControlName="email" [(ngModel)]="usuario.email" class="form-control" aria-describedby="basic-addon3">
+                </div>
+                <!-- Prueba para subida de archivos -->
+                <!-- <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Imagen</span>
+                    </div>
+                    <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput formControlName="imagen" [(ngModel)]="usuario.imagen" class="form-control" aria-describedby="basic-addon3">
+                    <button class="btn btn-outline-primary" type="button" (click)="fileInput.click()">Elegir</button>
+                    <button class="btn btn-outline-success" type="button" (click)="onUpload">Subir</button>
+                </div> -->
+                <!-- Prueba para subida de archivos -->
+    
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-success" (click)="altaUsuario()">Agregar</button>
+                    <button class="btn btn-outline-primary" (click)="editarUsuario()">Modificar</button>
+                    <button class="btn btn-outline-secondary" (click)="clearInputMethod1()">Clear</button>  <!--Aqui colocamos el método con el cual se limpiaran los formularios-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
