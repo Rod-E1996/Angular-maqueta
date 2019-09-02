@@ -22,6 +22,26 @@ import { AnimacionesComponent } from './animaciones/animaciones.component';
 import { HomeComponent } from './home/home.component';
 import { CrudComponent } from './crud/crud.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+
+//Social login para Google y Facebook
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")  //id que nos proporciona google al solicitar permiso para utilizar sus servicios
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("Facebook-App-Id")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -30,11 +50,13 @@ import { FooterComponent } from './footer/footer.component';
     AnimacionesComponent,
     HomeComponent,
     CrudComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    SocialLoginModule, //para logearse con Google y Facebook
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl:'never'}), //el .withConfig, es simplemente para que no tire la advertencia a la hora de revisar la consola
     HttpClientModule, //modulo para servicio xmlhttp request
 
@@ -55,7 +77,12 @@ import { FooterComponent } from './footer/footer.component';
   ],
   providers: [
     //proviene de nuestro usuarios.service
-    UsuariosService
+    UsuariosService,
+    //de nuestro social login
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ],
   bootstrap: [AppComponent]
 })
