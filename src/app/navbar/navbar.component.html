@@ -25,7 +25,7 @@
                         <a class="nav-link botonNavbar" routerLink="#">Suscriptores<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link botonNavbar" routerLink="#">More Actions<span class="sr-only">(current)</span></a>
+                        <button *ngIf="user" class="nav-link botonNavbar" (click)="signOut()"><img width="30px" src="{{ user.photoUrl }}"> Sign Out<span class="sr-only">(current)</span></button>
                     </li>
                     <li class="nav-item dropdown active" dropdown>
                         <a class="nav-link dropdown-toggle botonNavbar" dropdownToggle href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

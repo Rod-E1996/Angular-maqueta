@@ -23,8 +23,8 @@
                     </span>
                     <form class="login100-form validate-form p-l-55 p-r-55 p-t-20">
                         
-                        <div class="wrap-input100 validate-input input-group m-b-16" data-validate="Please enter username">
-                            <input class="input100" type="text" name="username" placeholder="Username">
+                        <div class="wrap-input100 validate-input input-group m-b-16" data-validate="Please enter username" *ngIf="user">
+                            <input class="input100" type="text" name="username" placeholder="{{ user.email }}">
                             <span class="focus-input100" id="basic-addon1"></span>
                         </div>
                         <div class="wrap-input100 validate-input" data-validate="Please enter password">
@@ -48,13 +48,18 @@
                                 </div>
                                 <!-- <h6>O puedes iniciar con tus redes sociales</h6><br> -->
                                 <div class="btn-group mr-2" role="group">
+                                        <button class="btn btn-outline-primary login100-form-btn" (click)="signInWithFB()"> 
+                                            <i class="fab fa-facebook-f"></i>  <!--sin completar -->
+                                        </button>
+                                    </div>
+                                <div class="btn-group mr-2" role="group">
                                     <button class="btn btn-outline-primary login100-form-btn" (click)="signInWithGoogle()">
                                         <i class="fab fa-google"></i>
                                     </button>
                                 </div>
                                 <div class="btn-group mr-2" role="group">
-                                    <button class="btn btn-outline-danger login100-form-btn">
-                                        <i class="fab fa-facebook-f"></i>
+                                    <button class="btn btn-outline-danger login100-form-btn" (click)="signOut()">
+                                        <i class="fa fa-sign-out-alt"></i>
                                     </button>
                                 </div>
                             </div>
@@ -73,3 +78,8 @@
         </div>
     </div>
 </div>
+<!-- <img src="{{ user.photoUrl }}">
+<div>
+  <h4>{{ user.name }}</h4>
+  <p>{{ user.email }}</p>
+</div> -->
