@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component'
 import { AnimacionesComponent } from './animaciones/animaciones.component';
 import { CrudComponent } from './crud/crud.component';
 import { LoginComponent } from './login/login.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'crud',
     component: CrudComponent
+  },
+  {
+    path: 'registrar',
+    component: RegistrarComponent
   }
 ];
 

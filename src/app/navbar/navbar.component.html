@@ -7,13 +7,13 @@
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
                 <ul class="navbar-nav nav-justified w-100">
                     <li class="nav-item active">
-                        <a class="nav-link botonNavbar" routerLink="home">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link botonNavbar" routerLink="/home">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link botonNavbar" routerLink="animaciones">Animaciones <span class="sr-only">(current)</span></a>
+                        <a class="nav-link botonNavbar" routerLink="#">Animaciones <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link botonNavbar" routerLink="crud">Crud <span class="sr-only">(current)</span></a>
+                        <a class="nav-link botonNavbar" routerLink="/crud">Crud <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link botonNavbar" routerLink="#">Another Link<span class="sr-only">(current)</span></a>
@@ -25,7 +25,7 @@
                         <a class="nav-link botonNavbar" routerLink="#">Suscriptores<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <button *ngIf="user" class="nav-link botonNavbar" (click)="signOut()"><img width="30px" src="{{ user.photoUrl }}"> Sign Out<span class="sr-only">(current)</span></button>
+                        <a routerLink="" *ngIf="user" class="nav-link botonNavbar" (click)="signOut()"><img width="30px" src="{{ user.photoUrl }}"> Sign Out<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown active" dropdown>
                         <a class="nav-link dropdown-toggle botonNavbar" dropdownToggle href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

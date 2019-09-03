@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service'
+
+//Servicio para generar tokens
+
 
 //importaciones para logearse con Google y Facebook
 import { AuthService, SocialUser } from "angularx-social-login";
@@ -13,8 +17,9 @@ export class LoginComponent implements OnInit {
 
   private user: SocialUser;
   private loggedIn: boolean;
+  loginUserData = {}
 
-  constructor(private authService: AuthService) { }
+  constructor(private _login: LoginService, private authService: AuthService) { }  //inyectamos el servicio para logueo de personas
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {  //con AuthService, llamamos a AuthState, todo esto para comprobar si ya
@@ -33,6 +38,17 @@ export class LoginComponent implements OnInit {
  
   signOut(): void {
     this.authService.signOut();
+  }
+
+
+  
+  //metodos para iniciar sesion previamente registrado
+  loginUser() {
+    this._login.loginUser(this.loginUserData).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    )
+    console.log(this.loginUserData)
   }
 
 }

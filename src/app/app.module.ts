@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from './usuarios.service'  //aqui va nuestro modulo de servicio (para la consulta de datos)
+import { LoginService } from './login.service'
 
 //herramientas de ngx bootstrap
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -23,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { CrudComponent } from './crud/crud.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 //Social login para Google y Facebook
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
@@ -51,7 +53,8 @@ export function provideConfig() {
     HomeComponent,
     CrudComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,8 @@ export function provideConfig() {
   providers: [
     //proviene de nuestro usuarios.service
     UsuariosService,
+    //de nuestro AuthService
+    LoginService,
     //de nuestro social login
     {
       provide: AuthServiceConfig,
