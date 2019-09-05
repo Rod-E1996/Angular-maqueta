@@ -11,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  /***************************************************Botón para subir********************************************************/
   constructor(){}
   
   ngOnInit() {
   }
+
 
 }
 //A partir de aqui, exportaremos toda la configuracion para desplegar enlaces externos de forma segura para nuestra aplicacion//

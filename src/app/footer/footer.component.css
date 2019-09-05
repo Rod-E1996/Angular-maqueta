@@ -1,3 +1,6 @@
+html{
+	scroll-behavior: smooth;
+}
 .footer-copyright{
     background-color: #1e1e20;
     color: white;
