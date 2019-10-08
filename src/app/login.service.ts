@@ -13,7 +13,7 @@ export class LoginService {
     return this.http.post(`${this.URL}addSubs.php`, JSON.stringify(user))
   }
 
-  loginUser(user){
-    return this.http.post(`${this.URL}addSubs.php`, JSON.stringify(user))
-  }
+  // loginUser(user){
+  //   return this.http.post(`${this.URL}addSubs.php`, JSON.stringify(user))
+  // }
 }

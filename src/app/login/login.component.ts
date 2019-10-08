@@ -43,12 +43,6 @@ export class LoginComponent implements OnInit {
 
   
   //metodos para iniciar sesion previamente registrado
-  loginUser() {
-    this._login.loginUser(this.loginUserData).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
-    console.log(this.loginUserData)
-  }
+  
 
 }

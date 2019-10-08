@@ -9,7 +9,7 @@ import { RegistrarComponent } from './registrar/registrar.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: HomeComponent
   },
   {
     path: 'home',
