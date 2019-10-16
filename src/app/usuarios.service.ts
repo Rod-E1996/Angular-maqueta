@@ -3,7 +3,7 @@
 //antecediendole
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';  //hacemos la importacion de esta herramienta para poder llevar a cabo el servicio HTTP
+import { HttpClient, HttpHeaders } from '@angular/common/http';  //hacemos la importacion de esta herramienta para poder llevar a cabo el servicio HTTP
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { Usuario } from './models/usuario';
@@ -16,17 +16,27 @@ export class UsuariosService {
 
   URL = environment.apiURL;
 
-  constructor(private http: HttpClient) { }
-  obtenerUsuarios():Observable<Usuario[]>{
+  constructor(private http: HttpClient) {}
+  obtenerUsuarios():Observable<Usuario[]>{ //retorna un observable de un arreglo de usuarios
+    // const headers = new HttpHeaders({
+    //   'Authorization': 'bearer token'
+    // });
+    // let headers = new Headers();
+    // headers = headers.append('Authorization', 'bearer token2');
     return this.http.get<Usuario[]>(this.URL)  //creamos las funciones para que realize las operaciones basicas del crud
   }
 
-  altaUsuario(usuario){
-    return this.http.post(`${this.URL}`,usuario);
+  obtenerUsuariosWithHeaders():Observable<any>{ //retorna un observable de un arreglo de usuarios
+    return this.http.get(this.URL, {observe: 'response'})  //creamos las funciones para que realize las operaciones basicas del crud
   }
 
-  bajaUsuario(idUsuario: number){
-    return this.http.delete(`${this.URL}/${idUsuario}`);
+  agregarUsuario(usuario: Usuario): Observable<Usuario>{
+    return this.http.post<Usuario>(this.URL, usuario);
+  }
+
+  bajaUsuario(idUsuario: number): Observable<any>{
+    const url = this.URL + idUsuario;
+    return this.http.delete(url)
   }
 
   seleccionarUsuario(idUsuario: number):Observable<Usuario>{
@@ -34,7 +44,8 @@ export class UsuariosService {
     return this.http.get<Usuario>(url)
   }
 
-  editarUsuario(usuario){
-    return this.http.put(`${this.URL}/${usuario.idUsuario}`, usuario);
+  editarUsuario(usuario: Usuario): Observable<Usuario>{
+    const url = this.URL + usuario.idUsuario
+    return this.http.put<Usuario>(url, usuario);
   }
 }

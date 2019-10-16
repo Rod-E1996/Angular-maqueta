@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 
 //importacion de modelos para la base de datos
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsuariosService } from './usuarios.service'  //aqui va nuestro modulo de servicio (para la consulta de datos)
+import { AuthInterceptorService } from './services/auth-interceptor.service'  //aqui va nuestro modulo de servicio (para la consulta de datos)
 import { LoginService } from './login.service'
 
 //herramientas de ngx bootstrap
@@ -29,6 +30,7 @@ import { RegistrarComponent } from './registrar/registrar.component';
 //Social login para Google y Facebook
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 let config = new AuthServiceConfig([
   {
@@ -54,7 +56,8 @@ export function provideConfig() {
     CrudComponent,
     FooterComponent,
     LoginComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,12 @@ export function provideConfig() {
     CarouselModule.forRoot()
   ],
   providers: [
+    //proveniente de nuestro aut-interceptor
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
     //proviene de nuestro usuarios.service
     UsuariosService,
     //de nuestro AuthService

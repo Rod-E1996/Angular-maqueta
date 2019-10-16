@@ -21,11 +21,11 @@ export class CrudComponent implements OnInit {
 user: Usuario[]; //todos los usuarios
 notFound= false; //variable para hacer constar que no hya usuarios y no desplegar la tabla, solo el mensaje
 
-  usuario = {
-    idUsuario: null,
-    nombre: null,
-    telefono: null,
-    email: null
+  usuario: Usuario = {
+    idUsuario: 0,
+    nombre: '',
+    telefono: '',
+    email: ''
   };
     /* ********para usar los formControlName es necesario configurarlos aqui, como haremos a continuacion********* */
   //Configuramos nuestro form(que proviene de nuestro html) aqui
@@ -46,28 +46,35 @@ notFound= false; //variable para hacer constar que no hya usuarios y no desplega
   ngOnInit(){
     this.obtenerUsuarios();
   }
+  // obtenerUsuarios(){
+  //   this.usuariosServicio.obtenerUsuarios().subscribe((usuariosDeApi: Usuario[]) =>{ //callback principal, el de obtener usuarios
+  //     this.user = usuariosDeApi
+  //   }, error => console.error(error)); //callback que se ejecutará si no encuentra usuarios
+  // }
 
   obtenerUsuarios(){
-    this.usuariosServicio.obtenerUsuarios().subscribe((usuariosDeApi: Usuario[]) =>{ //callback principal, el de obtener usuarios
-      this.user = usuariosDeApi
+    this.usuariosServicio.obtenerUsuariosWithHeaders().subscribe((response: any) =>{ //callback principal, el de obtener usuarios
+      this.user = response.body
     }, error => console.error(error)); //callback que se ejecutará si no encuentra usuarios
   }
 
-  altaUsuario(){
-    this.usuariosServicio.altaUsuario(this.usuario).subscribe(
-      respuesta => {
-        if(respuesta==201){
-          alert('Usuario registrado'); //alerta que proviene del php que configuramos para dar esta respuesta al agregar usuario
-          this.obtenerUsuarios();
-        }
+  agregarUsuario(){
+    this.usuariosServicio.agregarUsuario(this.usuario).subscribe((response: Usuario)=>{
+      if(201){ //estado que devuelve la api
+        alert('Usuario registrado Exitosamente');
+        this.obtenerUsuarios(); //refrescamos la tabla
+        this.clearInputMethod1(); //limpiamos formulario
       }
-    );
+    }, error=>{ //2do callback cuando algo falla
+      console.log(error);
+      alert('Error al añadir usuario');
+    });
   }
 
   bajaUsuario(idUsuario){
-    this.usuariosServicio.bajaUsuario(idUsuario).subscribe(
-      respuesta => {  //respuesta proveniente de nuestra api, como promesa en este caso
-        if(respuesta==200){
+    this.usuariosServicio.bajaUsuario(idUsuario).subscribe((response: any) => {  //respuesta proveniente de nuestra api, como promesa en este caso
+        if(200){
+          // console.log(response);
           alert('Registro Eliminado');
           this.obtenerUsuarios();
         }
@@ -75,19 +82,20 @@ notFound= false; //variable para hacer constar que no hya usuarios y no desplega
     );
   }
 
-  editarUsuario(usuario){
-    this.usuariosServicio.editarUsuario(usuario).subscribe(
-      respuesta=>{
-      if(respuesta==200){
+  editarUsuario(){
+    this.usuariosServicio.editarUsuario(this.usuario).subscribe((response: Usuario)=>{
+      if(200){
+        // console.log(response);
         alert('Usuario Actualizado'); //alerta que proviene del php que configuramos para dar esta respuesta al agregar usuario
         this.obtenerUsuarios();
+        this.clearInputMethod1();
       }
     });
   }
 
   seleccionarUsuario(idUsuario: number){
-    this.usuariosServicio.seleccionarUsuario(idUsuario).subscribe((usuarioquevienedelaapi: Usuario)=>{
-      this.usuario = usuarioquevienedelaapi;
+    this.usuariosServicio.seleccionarUsuario(idUsuario).subscribe((usuarioDeApi: Usuario)=>{
+      this.usuario = usuarioDeApi;
     })
   }
 

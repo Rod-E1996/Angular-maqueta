@@ -68,7 +68,7 @@
                 <!-- Prueba para subida de archivos -->
                 
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-success" (click)="altaUsuario()" [disabled]="form.invalid">Agregar</button> <!--[disabled] unicamente invalida el boton cuando hay campos vacios-->
+                    <button class="btn btn-outline-success" (click)="agregarUsuario()" [disabled]="form.invalid">Agregar</button> <!--[disabled] unicamente invalida el boton cuando hay campos vacios-->
                     <button class="btn btn-outline-primary" (click)="editarUsuario(usuario.idUsuario)" [disabled]="form.invalid">Modificar</button>
                     <button class="btn btn-outline-secondary" (click)="clearInputMethod1()">Clear</button>  <!--Aqui colocamos el método con el cual se limpiaran los formularios-->
                 </div>
