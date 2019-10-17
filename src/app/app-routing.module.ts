@@ -6,15 +6,17 @@ import { CrudComponent } from './crud/crud.component';
 // import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './login/login.component';
+import { CanActivateGuard } from './guards/can-activate.guard'
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent, canActivate: [CanActivateGuard]
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent, canActivate: [CanActivateGuard]
   },
   {
     path: 'animaciones',
@@ -22,15 +24,15 @@ const routes: Routes = [
   },
   {
     path: 'crud',
-    component: CrudComponent
+    component: CrudComponent, canActivate: [CanActivateGuard]
   },
   {
     path: 'registrar',
     component: RegistrarComponent
   },
   {
-    path: 'not-found',
-    component: NotFoundComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: "**",

@@ -14,10 +14,10 @@ export class RegistrarComponent implements OnInit {
   ngOnInit() {
   }
 
-  registrarUser(){
-    this._login.registrarUser(this.registrarUserData).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
-  }
+  // registrarUser(){
+  //   this._login.registrarUser(this.registrarUserData).subscribe(
+  //     res => console.log(res),
+  //     err => console.log(err)
+  //   )
+  // }
 }
