@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Login } from './models/login';
 import { Subject } from 'rxjs'
 
 @Injectable({
@@ -6,12 +9,12 @@ import { Subject } from 'rxjs'
 })
 export class LoginService {
 
-  // URL = "http://localhost/ang-api/token/token";
+  URL = "http://localhost/ang-api/token/token/login";
   // loginUser(user){
   //   return this.http.post(`${this.URL}addSubs.php`, JSON.stringify(user))
   // }
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
   readonly ISLOGGEDKEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJub21icmUiOiJEb25hbGQgVHJ1bXAifQ.bhbAJCnGJ_F8WWKs4qLD1JvwWxZVu6iNhKYQ3lFpHLE';
   public urlUsuarioIntentaAcceder = '';
 
@@ -35,5 +38,10 @@ export class LoginService {
       return false;
     }
     return true;
+  }
+
+
+  prueba(usuario: Login): Observable<Login>{
+    return this.http.post<Login>(this.URL, usuario);
   }
 }

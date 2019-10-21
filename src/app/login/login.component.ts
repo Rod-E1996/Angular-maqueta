@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { LoginService } from '../login.service'
+import {FormBuilder, Validators} from '@angular/forms';
+import { LoginService } from '../login.service';
+import { Login } from '../models/login';
 import { Router } from '@angular/router';
 
 
@@ -11,7 +13,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private logIn: LoginService, private router: Router) { }  //inyectamos el servicio para logueo de personas
+  formLogin: any;
+
+  constructor(private logIn: LoginService, private router: Router, private formbuilder: FormBuilder) { }  //inyectamos el servicio para logueo de personas
+  
+  ngOnInit() {
+    this.formLogin = this.formbuilder.group({
+      nombre : [''],
+      telefono: ['']
+    });
+  }
 
   routeRedirect ='';
 
@@ -22,7 +33,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate([this.routeRedirect]);
   }
 
-
-  ngOnInit() {
+  onSubmit(){
+    const juego = this.formLogin.value;
+    console.log(juego);
   }
+
 }
